@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_gravity="bottom|right"
-        android:src="@drawable/plus"
+        android:src="@drawable/ic_autor_add"
         app:layout_anchor="@id/rv_autores"
         app:layout_anchorGravity="bottom|right|end"
         android:onClick="novoAutor"/>
