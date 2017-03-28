@@ -1,7 +1,10 @@
 package codes.wise.applivros;
 
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +22,8 @@ public class FormularioLivroActivity extends AppCompatActivity {
     private EditText edLivroTitulo;
     private EditText edLivroAno;
     private AutoCompleteTextView acLivroAutor;
-    Autor autorSelecionado;
+    private Autor autorSelecionado;
+    private TextInputLayout tilLivroAutor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +33,70 @@ public class FormularioLivroActivity extends AppCompatActivity {
         edLivroTitulo = (EditText) findViewById(R.id.ed_livro_titulo);
         edLivroAno = (EditText) findViewById(R.id.ed_livro_ano);
 
+        tilLivroAutor = (TextInputLayout) findViewById(R.id.til_livro_autor);
+        acLivroAutor = (AutoCompleteTextView) findViewById(R.id.ac_livro_autor);
+
+        acLivroAutor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                autorSelecionado = (Autor) adapterView.getItemAtPosition(position);
+                tilLivroAutor.setError(null);
+            }
+        });
+
+        acLivroAutor.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                autorSelecionado = null;
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         List<Autor> autores = Autor.listAll(Autor.class);
+        ArrayAdapter<Autor> acAdapter = new ArrayAdapter<Autor>(this, android.R.layout.simple_list_item_1, autores);
+        acLivroAutor.setAdapter(acAdapter);
 
     }
 
     public void salvarLivro(View view) {
 
         String titulo = edLivroTitulo.getText().toString();
-        int ano = Integer.valueOf(edLivroAno.getText().toString());
+        int ano = 0 ;
+        try {
+            ano = Integer.valueOf(edLivroAno.getText().toString());
 
-        Autor autor1 = Autor.findById(Autor.class, 1);
+        }catch (NumberFormatException e){
+            Toast.makeText(this, "Informe um ano.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        Livro livro = new Livro(titulo, ano, autor1);
-        livro.save();
 
-        finish();
+        if (autorSelecionado != null){
+            Livro livro = new Livro(titulo, ano, autorSelecionado);
+            livro.save();
+
+            finish();
+
+        }else{
+            tilLivroAutor.setError("Selecione um autor.");
+        }
+
+
+
     }
 }

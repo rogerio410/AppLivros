@@ -33,4 +33,9 @@ public class Autor extends SugarRecord{
     public String getPais() {
         return pais;
     }
+
+    @Override
+    public String toString() {
+        return this.getNome() + " ("+this.pais+")";
+    }
 }

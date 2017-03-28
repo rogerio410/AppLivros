@@ -45,6 +45,7 @@ public class ListaLivrosRVAdapter extends RecyclerView.Adapter<ListaLivrosRVAdap
 
         holder.tvLivroTitulo.setText(livro.getTitulo());
         holder.tvLivroAno.setText(""+livro.getAno());
+        holder.tvLivroAutorNome.setText(livro.getAutor().getNome());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +95,7 @@ public class ListaLivrosRVAdapter extends RecyclerView.Adapter<ListaLivrosRVAdap
 
         protected TextView tvLivroTitulo;
         protected TextView tvLivroAno;
+        protected TextView tvLivroAutorNome;
 
 
         public ViewHolder(View itemView) {
@@ -101,6 +103,7 @@ public class ListaLivrosRVAdapter extends RecyclerView.Adapter<ListaLivrosRVAdap
 
             tvLivroTitulo = (TextView) itemView.findViewById(R.id.tv_livro_titulo);
             tvLivroAno = (TextView) itemView.findViewById(R.id.tv_livro_ano);
+            tvLivroAutorNome = (TextView) itemView.findViewById(R.id.tv_livro_autor_nome);
         }
     }
 

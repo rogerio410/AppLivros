@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:orientation="vertical"
     tools:context="codes.wise.applivros.FormularioLivroActivity">
 
@@ -30,6 +31,20 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="Ano"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        android:id="@+id/til_livro_autor">
+
+        <AutoCompleteTextView
+            android:id="@+id/ac_livro_autor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Autor"/>
 
     </android.support.design.widget.TextInputLayout>
 

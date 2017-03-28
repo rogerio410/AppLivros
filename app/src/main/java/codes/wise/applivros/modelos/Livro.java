@@ -29,5 +29,9 @@ public class Livro extends SugarRecord{
     public int getAno() {
         return ano;
     }
+
+    public Autor getAutor() {
+        return autor;
+    }
 }
 
