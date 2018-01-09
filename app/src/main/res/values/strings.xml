@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AppLivros</string>
+    <string name="informe_o_ano">Informe um ano.</string>
+    <string name="entendi">Entendi</string>
+    <string name="selecione_um_autor">Selecione um autor!</string>
+    <string name="removido">Removido</string>
 </resources>

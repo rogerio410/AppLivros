@@ -17,7 +17,11 @@
             android:id="@+id/ed_livro_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Titulo do livro"/>
+            android:hint="Titulo do livro">
+
+            <requestFocus/>
+
+        </EditText>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -30,7 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Ano"/>
+            android:hint="Ano">
+
+        </EditText>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -47,6 +53,33 @@
             android:hint="Autor"/>
 
     </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Situacao"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/rg_situacao">
+
+        <RadioButton
+            android:id="@+id/rb_livro_situacao_novo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Novo"/>
+
+        <RadioButton
+            android:id="@+id/rb_livro_situacao_usado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usado"/>
+
+    </RadioGroup>
 
     <Button
         android:layout_width="match_parent"

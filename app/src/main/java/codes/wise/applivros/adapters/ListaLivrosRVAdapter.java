@@ -68,9 +68,9 @@ public class ListaLivrosRVAdapter extends RecyclerView.Adapter<ListaLivrosRVAdap
 
                         if (menuItem.getItemId() == R.id.item_remover_livro){
                             livro.delete();
-                            ListaLivrosRVAdapter.this.livros.remove(position);
-                            ListaLivrosRVAdapter.this.notifyItemRemoved(position);
-                            ListaLivrosRVAdapter.this.notifyItemRangeChanged(position, ListaLivrosRVAdapter.this.livros.size());
+                            livros.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, ListaLivrosRVAdapter.this.livros.size());
                             Toast.makeText(context, "Removido", Toast.LENGTH_SHORT).show();
                         }
 

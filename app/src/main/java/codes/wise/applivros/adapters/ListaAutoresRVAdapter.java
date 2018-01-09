@@ -46,14 +46,20 @@ public class ListaAutoresRVAdapter extends RecyclerView.Adapter<ListaAutoresRVAd
         holder.tvAutorNome.setText(autor.getNome());
         holder.tvAutorPais.setText(autor.getPais());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        configurarClicks(holder.itemView, autor, position);
+
+    }
+
+    private void configurarClicks(View itemView, Autor autor, int position) {
+
+        itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Autor: " + autor.getNome(), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, "Autor " + autor.getNome(), Snackbar.LENGTH_LONG).show();
             }
         });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 PopupMenu pop = new PopupMenu(context, view);
@@ -67,10 +73,10 @@ public class ListaAutoresRVAdapter extends RecyclerView.Adapter<ListaAutoresRVAd
 
                         if (menuItem.getItemId() == R.id.item_remover_livro){
                             autor.delete();
-                            ListaAutoresRVAdapter.this.autores.remove(position);
-                            ListaAutoresRVAdapter.this.notifyItemRemoved(position);
-                            ListaAutoresRVAdapter.this.notifyItemRangeChanged(position, ListaAutoresRVAdapter.this.autores.size());
-                            Toast.makeText(context, "Removido", Toast.LENGTH_SHORT).show();
+                            autores.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, ListaAutoresRVAdapter.this.autores.size());
+                            Toast.makeText(context, R.string.removido, Toast.LENGTH_SHORT).show();
                         }
 
                         return false;
@@ -95,13 +101,14 @@ public class ListaAutoresRVAdapter extends RecyclerView.Adapter<ListaAutoresRVAd
         protected TextView tvAutorNome;
         protected TextView tvAutorPais;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tvAutorNome = (TextView) itemView.findViewById(R.id.tv_autor_nome);
-            tvAutorPais = (TextView) itemView.findViewById(R.id.tv_autor_pais);
+            tvAutorNome = itemView.findViewById(R.id.tv_autor_nome);
+            tvAutorPais = itemView.findViewById(R.id.tv_autor_pais);
+
         }
+
     }
 
     public ListaAutoresRVAdapter(Context context, List<Autor> autores){

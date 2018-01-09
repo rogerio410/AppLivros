@@ -19,6 +19,7 @@ public class ListaAutoresActivity extends AppCompatActivity {
 
     private RecyclerView rvAutores;
     private ListaAutoresRVAdapter adapter;
+    private List<Autor> autores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,9 @@ public class ListaAutoresActivity extends AppCompatActivity {
     }
 
     private void carregarAutores() {
-        List<Autor> autores = Autor.listAll(Autor.class);
+
+        autores = Autor.find(Autor.class, null, null, null, "id desc", null);
+        //autores = Autor.findWithQuery(Autor.class, "Select * from Autor order by id desc limit 5");
 
         adapter = new ListaAutoresRVAdapter(this, autores);
         rvAutores.setAdapter(adapter);
@@ -67,7 +70,11 @@ public class ListaAutoresActivity extends AppCompatActivity {
                         Autor autor = new Autor(nome, pais);
                         autor.save();
 
-                        carregarAutores();
+                        autores.add(0, autor);
+                        adapter.notifyItemInserted(0);
+                        rvAutores.scrollToPosition(0);
+
+
 
                     }
                 })
