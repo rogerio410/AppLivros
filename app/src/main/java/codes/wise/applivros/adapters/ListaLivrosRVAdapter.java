@@ -60,13 +60,13 @@ public class ListaLivrosRVAdapter extends RecyclerView.Adapter<ListaLivrosRVAdap
                 PopupMenu pop = new PopupMenu(context, view);
                 MenuInflater inflater = pop.getMenuInflater();
 
-                inflater.inflate(R.menu.popup_menu_lista_livros, pop.getMenu());
+                inflater.inflate(R.menu.popup_menu_lista, pop.getMenu());
 
                 pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
-                        if (menuItem.getItemId() == R.id.item_remover_livro){
+                        if (menuItem.getItemId() == R.id.item_remover){
                             livro.delete();
                             livros.remove(position);
                             notifyItemRemoved(position);
